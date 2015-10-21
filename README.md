@@ -2,13 +2,13 @@
 From DNA sequences to GO enrichment Fisher tests
 
 ## Overview
-`go_enrichment` enrichment goes from transcripts in fasta sequences without annotation and a
-list of significant transcripts and produces GO enrichment Fisher tests.
+`go_enrichment` uses transcripts in fasta sequences without annotation and a
+list of significant transcripts to produces GO enrichment Fisher tests.
 
 ## Prerequisites
-To make `go_enrichment` enrichment work, you will need to have the following installed on
-your computer (see *Installation* section for more details about installing
-these prerequisites):
+To make `go_enrichment` enrichment work, you will need to have the following
+dependencies installed on your computer (see *Installation* section for more
+details about installing these prerequisites):
 
 - UNIX system (Linux or OSX)
 - `wget`
