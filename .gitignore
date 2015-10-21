@@ -1,0 +1,11 @@
+*.csv
+*.fasta
+*.fasta.complete
+*.hide
+*.hits
+*.info
+*.obo
+*.pdf
+*.swissprot
+*.txt
+*~
