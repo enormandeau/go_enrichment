@@ -16,6 +16,7 @@ these prerequisites):
 - `blastplus` suite of blast tools
 - `swissprot` and `nr` blast database
 - GO database (`go-basic.obo`)
+- `goatools`
 
 ## Installation
 If you do not have administrator rights on the computer you will be using, you
@@ -110,7 +111,38 @@ wget http://purl.obolibrary.org/obo/go/go-basic.obo
 exit
 ```
 
+### goatools
+`goatools` is a python module which depends on a certain number of other python
+modules. In order to make the installation easier, we will be using the
+`anaconda` python data analysis platform. `anaconda` will make it easy to
+install most of the module dependencies and does not require administrator
+rights.  To get the `anaconda` install file, go to
+[https://www.continuum.io/downloads](https://www.continuum.io/downloads) and
+choose the appropriate platform and python 2.7, then launch the installation
+and follow the instructions. When asked if you want `anaconda` to add itself to
+your `$PATH` variable, say yes. You can then update with:
+
+```
+conda update conda
+```
+
+Then go to the `goatools` `GitHub` page
+[https://github.com/tanghaibao/goatools](https://github.com/tanghaibao/goatools)
+and follow the installation instructions.
+
 ## Workflow
+This is a brief description of the steps as well as the input and output
+formats expected by `go_enrichment`.
+
+### Step 1 - Blast against swissprot
+
+### Step 2 - Extract analyzed genes
+
+### Step 3 - Get annotation information from uniprot
+
+### Step 4 - Format wanted GO information
+
+### Step 5 - Run `goatools`
 
 ## Licence
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img
