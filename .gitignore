@@ -1,3 +1,4 @@
+*.bad
 *.csv
 *.fasta
 *.fasta.complete
