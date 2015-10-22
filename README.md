@@ -25,7 +25,7 @@ may need to ask an administrator to install the following on the computer.
 ### Wget
 Your UNIX system should already have wget installed. Test this by running:
 
-```bash
+```
 wget
 ```
 
@@ -36,7 +36,7 @@ follow the installations instructions.
 ### Gnu Parallel
 We will use `wget` to download gnu parallel:
 
-```bash
+```
 wget http://ftp.gnu.org/gnu/parallel/parallel-latest.tar.bz2
 tar xvfB parallel-latest.tar.bz2
 cd parallel-*
@@ -51,13 +51,13 @@ through the `$PATH` variable on your system.
 
 For example, if you have administrator rights on the system, you could do:
 
-```bash
+```
 sudo cp /path_to_blastplus/bin/* /usr/local/bin
 ```
 
 Test the installation by launching blastn:
 
-```bash
+```
 blastn -h
 ```
 
@@ -71,7 +71,7 @@ approximately 20Go of data and then decompressing it, which will use even more
 space on your computer. Depending on your connection speed, this process could
 take a long time.
 
-```bash
+```
 # Create a temporary bash session
 bash
 
@@ -97,9 +97,8 @@ exit
 ### GO database
 Installing the GO database will be faster:
 
-```
+```bash
 # Create a temporary bash session
-bash
 
 # Moving to the GO database folder
 cd 02_go_database
@@ -122,7 +121,7 @@ choose the appropriate platform and python 2.7, then launch the installation
 and follow the instructions. When asked if you want `anaconda` to add itself to
 your `$PATH` variable, say yes. You can then update with:
 
-```
+```bash
 conda update conda
 ```
 
@@ -145,16 +144,7 @@ formats expected by `go_enrichment`.
 ### Step 5 - Run `goatools`
 
 ## Licence
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img
-    alt="Creative Commons Licence" style="border-width:0"
-    src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br/><span
-    xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
-    property="dct:title" rel="dct:type">go_enrichment</span> by <a
-    xmlns:cc="http://creativecommons.org/ns#"
-    href="https://github.com/enormandeau/go_enrichment"
-    property="cc:attributionName" rel="cc:attributionURL">Eric Normandeau</a> is
-    licensed under a <br/><a rel="license"
-    href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution
-    4.0 International License
-</a>.
+`go_enrichment` is licensed under the GPL3 license. See the LICENCE file for
+more details.
+
 
