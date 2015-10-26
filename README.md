@@ -5,6 +5,11 @@ From DNA sequences to GO enrichment Fisher tests
 `go_enrichment` uses transcripts in fasta sequences without annotation and a
 list of significant transcripts to produces GO enrichment Fisher tests.
 
+## TODO
+Things left to implement
+
+- Generate output to use with [g:Profiler](http://biit.cs.ut.ee/gprofiler)
+
 ## Prerequisites
 To make `go_enrichment` enrichment work, you will need to have the following
 dependencies installed on your computer (see *Installation* section for more
