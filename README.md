@@ -1,33 +1,45 @@
 # go_enrichment
+
 From DNA sequences to GO enrichment Fisher tests
 
 ## Overview
+
 `go_enrichment` uses transcripts in fasta sequences without annotation and a
-list of significant transcripts to produces GO enrichment Fisher tests.
+list of significant transcripts to produces GO enrichment Fisher tests. To do
+so, the fasta sequences are blasted against the swissprot protein database and
+the uniprot information is retreived from the uniprot website. Fisher tests are
+done with `goatools`.
 
 ## TODO
-Things left to implement
 
+Things left to implement:
+
+- Create goatools bash script (see `runall.sh`)
 - Generate output to use with [g:Profiler](http://biit.cs.ut.ee/gprofiler)
 
 ## Prerequisites
+
 To make `go_enrichment` enrichment work, you will need to have the following
 dependencies installed on your computer (see *Installation* section for more
 details about installing these prerequisites):
 
-- UNIX system (Linux or OSX)
+- UNIX system (Linux or MAC OSX)
 - `wget`
 - `gnu parallel`
-- `blastplus` suite of blast tools
-- `swissprot` and `nr` blast database
+- `blastplus` the NCBI suite of blast tools
+- `swissprot` and `nr` blast databases
 - GO database (`go-basic.obo`)
 - `goatools`
 
 ## Installation
-If you do not have administrator rights on the computer you will be using, you
-may need to ask an administrator to install the following on the computer.
+
+If you do not have administrator rights on the computer you will be using or
+have little experience compiling, installing and adding programs to your PATH
+environment variable, you will potentially need to ask an administrator to
+install the following programs and databases.
 
 ### Wget
+
 Your UNIX system should already have wget installed. Test this by running:
 
 ```
@@ -35,10 +47,16 @@ wget
 ```
 
 If you get a message saying there is a missing URL, wget is installed.
-Otherwise, you probably have a computer with OSX. Google `install wget OSX` and
-follow the installations instructions.
+Otherwise, if you are using a computer with OSX. Google `install wget OSX` and
+follow the installations instructions. For `Debian` or `Ubuntu` derived Linux
+distributions, install `wget` with:
+
+```
+sudo apt-get install wget
+```
 
 ### Gnu Parallel
+
 We will use `wget` to download gnu parallel:
 
 ```
@@ -49,24 +67,28 @@ cd parallel-*
 ```
 
 ### Blast tools
+
 The blast executables (pre-compiled for different architectures) can be found
-here: [ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/). Download the right ones for your computer, uncompress the archive
-and copy all the files that are in the `bin` folder so that they are accessible
-through the `$PATH` variable on your system.
+here:
+[ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/).
+Download the right ones for your computer, uncompress the archive and copy all
+the files that are in the `bin` folder so that they are accessible through the
+`$PATH` variable on your system.
 
 For example, if you have administrator rights on the system, you could do:
 
 ```
-sudo cp /path_to_blastplus/bin/* /usr/local/bin
+sudo cp /path_to_blastplus/bin/\* /usr/local/bin
 ```
 
-Test the installation by launching blastn:
+Test the installation by launching blastn's help:
 
 ```
 blastn -h
 ```
 
 ### Swissprot database
+
 We will use wget to download the `nr` and `swissprot` databases. Since
 `swissprot` is effectively only a subset of `nr`, we need to download both in
 order to use it.
@@ -100,10 +122,12 @@ exit
 ```
 
 ### GO database
+
 Installing the GO database will be faster:
 
-```bash
+```
 # Create a temporary bash session
+bash
 
 # Moving to the GO database folder
 cd 02_go_database
@@ -116,7 +140,8 @@ exit
 ```
 
 ### goatools
-`goatools` is a python module which depends on a certain number of other python
+
+`goatools` is a python module. It depends on a certain number of other python
 modules. In order to make the installation easier, we will be using the
 `anaconda` python data analysis platform. `anaconda` will make it easy to
 install most of the module dependencies and does not require administrator
@@ -126,7 +151,7 @@ choose the appropriate platform and python 2.7, then launch the installation
 and follow the instructions. When asked if you want `anaconda` to add itself to
 your `$PATH` variable, say yes. You can then update with:
 
-```bash
+```
 conda update conda
 ```
 
@@ -135,6 +160,7 @@ Then go to the `goatools` `GitHub` page
 and follow the installation instructions.
 
 ## Workflow
+
 This is a brief description of the steps as well as the input and output
 formats expected by `go_enrichment`.
 
@@ -149,6 +175,7 @@ formats expected by `go_enrichment`.
 ### Step 5 - Run `goatools`
 
 ## Licence
+
 `go_enrichment` is licensed under the GPL3 license. See the LICENCE file for
 more details.
 

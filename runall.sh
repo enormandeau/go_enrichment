@@ -21,7 +21,7 @@ awk '{print $1}' all_go_annotations.csv > all_ids.txt
 # TODO WARNING! This would be given by the user
 head -200 all_ids.txt > significant_ids.txt
 
-# topGo
+# goa tools
 echo "Running enrichment analysis..."
 python ../goatools/scripts/find_enrichment.py --pval=0.05 --indent --obo 02_go_database/go-basic.obo significant_ids.txt all_ids.txt all_go_annotations.csv > go_enrichment.csv
 
