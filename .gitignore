@@ -5,6 +5,7 @@
 *.fasta.complete
 *.hide
 *.hits
+*.ids
 *.info
 *.obo
 *.pdf
