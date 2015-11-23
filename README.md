@@ -166,13 +166,11 @@ formats expected by `go_enrichment`.
 
 ### Step 1 - Blast against swissprot
 
-### Step 2 - Extract analyzed genes
+### Step 2 - Get annotation information from uniprot
 
-### Step 3 - Get annotation information from uniprot
+### Step 3 - Extract analyzed genes
 
-### Step 4 - Format wanted GO information
-
-### Step 5 - Run `goatools`
+### Step 4 - Run `goatools`
 
 ## Licence
 
