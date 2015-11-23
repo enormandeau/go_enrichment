@@ -15,7 +15,19 @@ done with `goatools`.
 Things left to implement:
 
 - Create goatools bash script (see `runall.sh`)
+
+```
+find_enrichment.py --pval=0.05 --indent --fdr --obo 02_go_database/go-basic.obo significant_ids.txt all_ids.txt 06_fisher_tests/all_go_annotations.csv > 06_fisher_tests/go_enrichment.csv
+```
+
+- Filter script (python) to add GO categories (compatment, function, process) and keep only significant GOs between certain levels (eg: 1 to 3)
 - Generate output to use with [g:Profiler](http://biit.cs.ut.ee/gprofiler)
+  - In the `05_annotations` folder
+  - From all .info files
+  - Get "GN   Name:cyp1a1; (...)"
+  - Keep only first occurence of GN per file
+  - Write them all to files
+  - Second script to generate the significant genes for gprofiler
 
 ## Prerequisites
 
