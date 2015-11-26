@@ -5,9 +5,6 @@ SWISSPROT_HITS=04_blast_results/analyzed_genes.hits
 ANNOTATION_FOLDER=05_annotations
 FISHER_FOLDER=06_fisher_tests
 
-## Get info from uniprot for each hit
-#cat $SWISSPROT_HITS | while read i; do echo $i; feature=$(echo $i | cut -d " " -f 1) hit=$(echo $i | cut -d "|" -f 4 | cut -d "." -f 1); echo $feature $hit; wget -q -O - http://www.uniprot.org/uniprot/${hit}.txt > $ANNOTATION_FOLDER/${feature}.info; done
-
 # Get info from uniprot for each hit in parallel
 cat $SWISSPROT_HITS | while read i; do feature=$(echo $i | cut -d " " -f 1) hit=$(echo $i | cut -d "|" -f 4 | cut -d "." -f 1); echo "wget -q -O - http://www.uniprot.org/uniprot/${hit}.txt > $ANNOTATION_FOLDER/${feature}.info"; done > temp_wget_commands.txt
 

@@ -9,6 +9,8 @@ SWISSPROT_DB=~/Software/blastplus_databases/swissprot
 # Blast all sequences against swissprot (must be installed locally)
 cat $SEQUENCE_FILE | parallel -k --block 1k --recstart '>' --pipe 'blastx -db '$SWISSPROT_DB' -query - -evalue 1e-3 -outfmt 6 -max_target_seqs 1' > $SWISSPROT_RESULT
 
+# TODO filter blasts on similarity, evalue, length...
+
 # Extract analyzed_genes.hits
 awk '{print $1,$2}' $SWISSPROT_RESULT | uniq > $SWISSPROT_HITS
 
