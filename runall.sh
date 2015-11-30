@@ -15,11 +15,11 @@ cat 04_blast_results/analyzed_genes.hits | while read i; do echo $i; feature=$(e
 echo "Extracting GO information"
 for i in 05_annotations/*.info; do echo -e "$(basename $i | perl -pe 's/\.info//')\t$(cat $i | grep -E '^DR\s+GO' | awk '{print $3}' | perl -pe 's/\n//')"; done > all_go_annotations.csv
 
-# Create lists of all IDs and subset of IDs for enrichment
-awk '{print $1}' all_go_annotations.csv > all_ids.txt
+## Create lists of all IDs and subset of IDs for enrichment
+#awk '{print $1}' all_go_annotations.csv > all_ids.txt
 
-# TODO WARNING! This would be given by the user
-head -200 all_ids.txt > significant_ids.txt
+## TODO WARNING! This would be given by the user
+#head -200 all_ids.txt > significant_ids.txt
 
 # goa tools
 echo "Running enrichment analysis..."
