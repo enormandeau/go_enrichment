@@ -185,11 +185,33 @@ formats expected by `go_enrichment`.
 
 ### Step 1 - Blast against swissprot
 
+Run:
+
+```
+./01_scripts/01_blast_against_swissprot.sh
+```
+
 ### Step 2 - Get annotation information from uniprot
+
+Run:
+
+```
+./01_scripts/02_get_uniprot_info.sh
+```
 
 ### Step 3 - Extract analyzed genes
 
+Generate two text files containing (one per line):
+- The names of **all** the analyzed genes
+- The names of the **significant** genes
+
 ### Step 4 - Run `goatools`
+
+Run:
+
+```
+./01_scripts/03_goatools.sh
+```
 
 ## Licence
 
