@@ -24,8 +24,9 @@ find_enrichment.py --pval=0.05 --indent --fdr --obo 02_go_database/go-basic.obo 
   - Keep only significant GOs between certain levels (eg: 1 to 3)
   - Add GO level (instead of ...)
   - Add GO categories (compatment, function, process)
-  - Add gene IDs in that GO
   - Add definition of GO (from go-basic.obo)
+  - Add gene IDs in that GO
+  - Create file with GOs (col 1) and gene names (col 2)
 
 - Generate output to use with [g:Profiler](http://biit.cs.ut.ee/gprofiler)
   - In the `05_annotations` folder
