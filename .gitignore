@@ -1,4 +1,3 @@
-00_archive/*
 *.backup
 *.bad
 *.bak
@@ -17,5 +16,7 @@
 *.swissprot
 *.test
 *.txt
+*.xls
 *~
 .~lock*
+00_archive/*
