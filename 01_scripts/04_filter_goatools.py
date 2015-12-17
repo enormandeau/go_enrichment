@@ -6,7 +6,6 @@ Usage:
 """
 
 # TODO
-# - Add column with genes that have a GO id
 # - Use argparse to add options (fdr, min and max level...)
 # - Filter based on namespace
 
@@ -111,11 +110,13 @@ def parse_enrichment_file(input_enrichment, output_enrichment, go_db):
             info.definition = term.definition
             fdr = float(info.p_sidakp_fdr)
 
-            if fdr > 0.05:
-                keep_go = False
+            # Filter based on FDR
+            #if fdr > 0.05:
+            #    keep_go = False
 
-            if not 1 <= info.level <= 3:
-                keep_go = False
+            # Filter based on GO level
+            #if not 1 <= info.level <= 3:
+            #    keep_go = False
 
             if keep_go:
                 num_go_kept += 1
