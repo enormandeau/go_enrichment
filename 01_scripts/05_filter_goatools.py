@@ -5,10 +5,6 @@ Usage:
     python ./01_scripts/04_filter_goatools.py input_enrichment go_database output_enrichment
 """
 
-# TODO
-# - Use argparse to add options (fdr, min and max level...)
-# - Filter based on namespace
-
 # Modules
 import argparse
 import sys

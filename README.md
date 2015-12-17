@@ -1,50 +1,26 @@
 # go_enrichment
 
-From DNA sequences to GO enrichment Fisher tests
+From DNA sequences to annotation and GO enrichment Fisher test results
 
 ## Overview
 
-`go_enrichment` uses transcripts in fasta sequences without annotation and a
-list of significant transcripts to produces GO enrichment Fisher tests. To do
-so, the fasta sequences are blasted against the swissprot protein database and
-the uniprot information is retreived from the uniprot website. Fisher tests are
-done with `goatools`.
-
-## TODO
-
-Things left to implement:
-
-- Create goatools bash script (see `runall.sh`)
-
-```
-find_enrichment.py --pval=0.05 --indent --fdr --obo 02_go_database/go-basic.obo significant_ids.txt all_ids.txt 06_fisher_tests/all_go_annotations.csv > 06_fisher_tests/go_enrichment.csv
-```
-
-- Filter script (python)
-  - Keep only significant GOs between certain levels (eg: 1 to 3)
-  - Add gene IDs in that GO (from info files?)
-  - Create file with GOs (col 1) and gene names (col 2)
-
-- Generate output to use with [g:Profiler](http://biit.cs.ut.ee/gprofiler)
-  - In the `05_annotations` folder
-  - From all .info files
-  - Get "GN   Name:cyp1a1; (...)"
-  - Keep only first occurence of GN per file
-  - Write them all to files
-  - Second script to generate the significant genes for gprofiler
+`go_enrichment` annotates transcript sequences and performs GO enrichment
+Fisher tests. The transcript sequences are blasted against the swissprot
+protein database and the uniprot information corresponding to the hit is
+retrieved from the uniprot website. Fisher tests are performed with the
+`goatools` Python module.
 
 ## Prerequisites
 
-To make `go_enrichment` enrichment work, you will need to have the following
-dependencies installed on your computer (see *Installation* section for more
-details about installing these prerequisites):
+To use `go_enrichment`, you will need a UNIX system (Linux or Mac OSX) and the
+following dependencies installed on your computer (see *Installation* section
+for more details about installing these prerequisites):
 
-- UNIX system (Linux or MAC OSX)
 - `wget`
 - `gnu parallel`
 - `blastplus` the NCBI suite of blast tools
 - `swissprot` and `nr` blast databases
-- GO database (`go-basic.obo`)
+- GO database (`go-basic.obo` or `go-slim.obo`)
 - `goatools`
 
 ## Installation
@@ -139,7 +115,7 @@ exit
 
 ### GO database
 
-Installing the GO database will be faster:
+Installing the GO databases (basic and goslim) will be faster:
 
 ```
 # Create a temporary bash session
@@ -148,8 +124,9 @@ bash
 # Moving to the GO database folder
 cd 02_go_database
 
-# Downloading the database
-wget http://purl.obolibrary.org/obo/go/go-basic.obo
+# Downloading the databases
+wget http://geneontology.org/ontology/go-basic.obo
+wget http://geneontology.org/ontology/subsets/goslim_generic.obo
 
 # Exit temporary bash session
 exit
@@ -182,7 +159,14 @@ formats expected by `go_enrichment`.
 
 ### Step 1 - Blast against swissprot
 
-Run:
+Put your sequences of interest in the `03_sequences` folder in a file named
+`analysed_genes.fasta`. If you use another name, you will need to modify the
+`SEQUENCE_FILE` variable in the script.
+
+You need the script to point to the locally installed blastplus database by
+modifying the `SWISSPROT_DB` variable.
+
+Then run:
 
 ```
 ./01_scripts/01_blast_against_swissprot.sh
@@ -190,32 +174,46 @@ Run:
 
 ### Step 2 - Get annotation information from uniprot
 
+This step will use the blast results to download the information of the genes
+to which the transcript sequences correspond.
+
 Run:
 
 ```
 ./01_scripts/02_get_uniprot_info.sh
 ```
 
-### Step 3 - Extract analyzed genes
+### Step 3 - Annotate the transcripts
 
-Generate two text files containing (one per line):
-- The names of **all** the analyzed genes
-- The names of the **significant** genes
-
-### Step 4 - Run `goatools`
+Use this step to create a .csv file containing the transcript names as well as
+some annotation information (Name, Accession, Fullname, Altnames, GO).
 
 Run:
 
 ```
-./01_scripts/03_goatools.sh
+./01_scripts/03_annotate_genes.py 03_sequences/analyzed_genes.fasta 05_annotations/ sequence_annotation.csv
 ```
 
-### Step 5 - Filter `goatools` results
+### Step 4 - Extract analyzed genes
 
-Run:
+Before we can perform the Fisher tests, we need to generate two text files containing (one per line):
+- The names of **all** the analyzed transcripts
+- The names of the **significant** transcripts
+
+### Step 5 - Run `goatools`
+
+This script will launch `goatools` and perform the Fisher tests.
 
 ```
-./01_scripts/04_filter_goatools.py enrichment.csv 02_go_database/go-basic.obo filtered.csv
+./01_scripts/04_goatools.sh
+```
+
+### Step 6 - Filter `goatools` results
+
+We can now reformat the results of `goatools` to make them more useful.
+
+```
+./01_scripts/05_filter_goatools.py enrichment.csv 02_go_database/go-basic.obo filtered.csv
 ```
 
 ## Licence
