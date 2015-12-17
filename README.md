@@ -20,7 +20,7 @@ for more details about installing these prerequisites):
 - `gnu parallel`
 - `blastplus` the NCBI suite of blast tools
 - `swissprot` and `nr` blast databases
-- GO database (`go-basic.obo` or `go-slim.obo`)
+- GO database
 - `goatools`
 
 ## Installation
@@ -115,7 +115,7 @@ exit
 
 ### GO database
 
-Installing the GO databases (basic and goslim) will be faster:
+Installing the GO database will be faster:
 
 ```
 # Create a temporary bash session
@@ -126,7 +126,6 @@ cd 02_go_database
 
 # Downloading the databases
 wget http://geneontology.org/ontology/go-basic.obo
-wget http://geneontology.org/ontology/subsets/goslim_generic.obo
 
 # Exit temporary bash session
 exit
