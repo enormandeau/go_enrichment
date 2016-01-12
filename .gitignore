@@ -5,6 +5,7 @@
 *.fasta
 *.fasta.complete
 *.good
+*.gz
 *.hide
 *.hits
 *.ids
