@@ -29,6 +29,7 @@ class Info(object):
         self.fullname  = ""
         self.altnames  = ""
         self.go        = ""
+        self.pfam      = ""
 
         def get_info(line):
             l = line.strip()[5:]
@@ -54,6 +55,10 @@ class Info(object):
                         l = line.replace("DR   GO;", "").strip()
                         l = l.split(";")[0]
                         self.go += l + ";"
+                    elif line.startswith("DR   Pfam;"):
+                        l = line.replace("DR   Pfam;", "").strip()
+                        l = l.split(";")[0]
+                        self.pfam += l + ";"
         except:
             pass
 
@@ -62,6 +67,7 @@ class Info(object):
             self.accession,
             self.fullname,
             self.altnames,
+            self.pfam,
             self.go])
 
 # Functions
@@ -97,7 +103,7 @@ except:
 sequences = fasta_iterator(sequence_file)
 
 with open(output_file, "w") as ofile:
-    ofile.write("\t".join(["Name", "Accession", "Fullname", "Altnames", "GO"]) + "\n")
+    ofile.write("\t".join(["Name", "Accession", "Fullname", "Altnames", "Pfam", "GO"]) + "\n")
     for s in sequences:
         name = s.name.split(" ")[0]
         info_file = os.path.join(annotation_folder, name + ".info")
