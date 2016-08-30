@@ -30,6 +30,7 @@ class Info(object):
         self.altnames  = ""
         self.go        = ""
         self.pfam      = ""
+        self.kegg      = ""
 
         def get_info(line):
             l = line.strip()[5:]
@@ -59,6 +60,10 @@ class Info(object):
                         l = line.replace("DR   Pfam;", "").strip()
                         l = l.split(";")[0]
                         self.pfam += l + ";"
+                    elif line.startswith("DR   KEGG;"):
+                    l = line.replace("DR   KEGG;", "").strip()
+                    l = l.split(";")[0]
+                    self.pfam += l + ";"
         except:
             pass
 
