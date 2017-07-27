@@ -2,7 +2,7 @@
 """Annotate sequences with info from uniprot
 
 Usage:
-    ./01_scripts/05_annotate_genes.py sequence_file annotation_folder output_file
+    ./01_scripts/03_annotate_genes.py sequence_file annotation_folder output_file
 """
 
 # Modules
