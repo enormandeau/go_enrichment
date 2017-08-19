@@ -1,6 +1,6 @@
 # go_enrichment
 
-From DNA sequences to annotation and GO enrichment Fisher test results
+Transcripts annotation and GO enrichment Fisher tests
 
 ## Overview
 
