@@ -106,8 +106,8 @@ wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/swissprot.*
 cat *.md5 | md5sum -c
 
 # Decompressing
-gunzip nr.*.gz
-gunzip swissprot.*.gz
+for file in `ls nr.*.gz` ; do tar -xzf $file ; done
+for file in `ls swissprot.*.gz`; do tar -xzf $file ; done
 
 # Exit temporary bash session
 exit
