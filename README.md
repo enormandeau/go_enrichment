@@ -190,7 +190,7 @@ some annotation information (Name, Accession, Fullname, Altnames, GO).
 Run:
 
 ```
-./01_scripts/03_annotate_genes.py 03_sequences/analyzed_genes.fasta 05_annotations/ sequence_annotation.csv
+./01_scripts/03_annotate_genes.py 03_sequences/analyzed_genes.fasta 05_annotations/ sequence_annotation.txt
 ```
 
 ### Step 4 - Extract analyzed genes
