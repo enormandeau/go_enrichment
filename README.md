@@ -159,7 +159,7 @@ formats expected by `go_enrichment`.
 ### Step 1 - Blast against swissprot
 
 Put your sequences of interest in the `03_sequences` folder in a file named
-`analysed_genes.fasta`. If you use another name, you will need to modify the
+`analyzed_genes.fasta`. If you use another name, you will need to modify the
 `SEQUENCE_FILE` variable in the script.
 
 You need the script to point to the locally installed blastplus database by
