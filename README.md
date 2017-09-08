@@ -201,7 +201,7 @@ Before we can perform the Fisher tests, we need to generate two text files conta
 
 ### Step 5 - Run `goatools`
 
-This script will launch `goatools` and perform the Fisher tests.
+This script will launch `goatools` and perform the Fisher tests. Note: edit the script to point to your own installation of `find_enrichment.py`    
 
 ```
 ./01_scripts/04_goatools.sh
