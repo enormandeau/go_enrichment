@@ -196,8 +196,8 @@ Run:
 ### Step 4 - Extract analyzed genes
 
 Before we can perform the Fisher tests, we need to generate two text files containing (one per line):
-- The names of **all** the analyzed transcripts
-- The names of the **significant** transcripts
+- The names of **all** the analyzed transcripts, 'all_ids.txt'   
+- The names of the **significant** transcripts, 'significant_ids.txt'    
 
 ### Step 5 - Run `goatools`
 
