@@ -106,8 +106,8 @@ wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/swissprot.*
 cat *.md5 | md5sum -c
 
 # Decompressing
-gunzip nr.*.gz
-gunzip swissprot.*.gz
+for file in `ls nr.*.gz` ; do tar -xzf $file ; done
+for file in `ls swissprot.*.gz`; do tar -xzf $file ; done
 
 # Exit temporary bash session
 exit
@@ -159,7 +159,7 @@ formats expected by `go_enrichment`.
 ### Step 1 - Blast against swissprot
 
 Put your sequences of interest in the `03_sequences` folder in a file named
-`analysed_genes.fasta`. If you use another name, you will need to modify the
+`analyzed_genes.fasta`. If you use another name, you will need to modify the
 `SEQUENCE_FILE` variable in the script.
 
 You need the script to point to the locally installed blastplus database by
@@ -190,18 +190,18 @@ some annotation information (Name, Accession, Fullname, Altnames, GO).
 Run:
 
 ```
-./01_scripts/03_annotate_genes.py 03_sequences/analyzed_genes.fasta 05_annotations/ sequence_annotation.csv
+./01_scripts/03_annotate_genes.py 03_sequences/analyzed_genes.fasta 05_annotations/ sequence_annotation.txt
 ```
 
 ### Step 4 - Extract analyzed genes
 
 Before we can perform the Fisher tests, we need to generate two text files containing (one per line):
-- The names of **all** the analyzed transcripts
-- The names of the **significant** transcripts
+- The names of **all** the analyzed transcripts, 'all_ids.txt'   
+- The names of the **significant** transcripts, 'significant_ids.txt'    
 
 ### Step 5 - Run `goatools`
 
-This script will launch `goatools` and perform the Fisher tests.
+This script will launch `goatools` and perform the Fisher tests. Note: edit the script to point to your own installation of `find_enrichment.py`    
 
 ```
 ./01_scripts/04_goatools.sh
