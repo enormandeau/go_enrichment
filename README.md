@@ -18,7 +18,7 @@ for more details about installing these prerequisites):
 
 - `wget`
 - `gnu parallel`
-- `blastplus` the NCBI suite of blast tools
+- `blastplus` 2.7.1+, the NCBI suite of blast tools
 - `swissprot` and `nr` blast databases
 - GO database
 - `goatools`
@@ -58,7 +58,7 @@ cd parallel-*
 ./configure && make && sudo make install
 ```
 
-### Blast tools
+### Blast tools 2.7.1+
 
 The blast executables (pre-compiled for different architectures) can be found
 here:
