@@ -16,8 +16,10 @@
 *.stripped
 *.swissprot
 *.test
+*.tsv
 *.txt
 *.xls
+*00_archive*
 *~
 .~lock*
-00_archive/*
+goatools/*
