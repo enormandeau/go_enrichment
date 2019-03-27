@@ -127,7 +127,7 @@ def parse_enrichment_file(input_enrichment, output_enrichment, go_db, fdr_thresh
             term = go_db[info.id]
             info.namespace = term.namespace
             info.definition = term.definition
-            fdr = float(info.p_sidakp_fdr)
+            fdr = float(info.p_fdr_bh)
 
             # Filter based on FDR
             if fdr > fdr_threshold:
