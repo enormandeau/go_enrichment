@@ -1,6 +1,7 @@
 *.backup
 *.bad
 *.bak
+*.bed
 *.csv
 *.fasta
 *.fasta.complete
