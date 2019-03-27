@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 """Filter and enrich the results of goatools
 
 Usage:
-    python ./01_scripts/04_filter_goatools.py input_enrichment go_database output_enrichment
+    python ./01_scripts/04_filter_goatools.py input_enrichment go_database output_enrichment fdr_threshold max_go_level
 """
 
 # Modules
@@ -24,21 +24,38 @@ class Go_result(object):
     def __init__(self, line):
         self.id = line[0].replace(".", "")
         self.level = line[0].count(".")
-        self.enrichment = line[1]
-        self.namespace = ""
-        self.name = line[2]
+        self.namespace = line[1]
+        self.enrichment = line[2]
+        self.name = line[3]
         self.definition = ""
-        self.ratio_in_study = line[3]
-        self.ratio_in_pop = line[4]
-        self.p_uncorrected = line[5]
-        self.p_bonferroni = line[6]
-        self.p_holm = line[7]
-        self.p_sidakp_fdr = line[8]
+
+        self.ratio_in_study = line[4]
+        self.ratio_in_pop = line[5]
+        self.p_uncorrected = line[6]
+
+        self.p_bonferroni = line[9]
+        self.p_sidakp_fdr = line[10]
+        self.p_holm = line[11]
+        self.p_fdr_bh = line[12]
 
     def __repr__(self):
-        return "\t".join([self.id, str(self.level), self.enrichment,
-            self.namespace, self.name, self.definition, self.ratio_in_study, self.ratio_in_pop,
-            self.p_uncorrected, self.p_bonferroni, self.p_holm, self.p_sidakp_fdr])
+        return "\t".join([
+            self.id,
+            str(self.level),
+            self.namespace,
+            self.enrichment,
+            self.name,
+            self.definition,
+
+            self.ratio_in_study,
+            self.ratio_in_pop,
+            self.p_uncorrected,
+
+            self.p_bonferroni,
+            self.p_sidakp_fdr,
+            self.p_holm,
+            self.p_fdr_bh
+            ])
 
 # Functions
 def read_go_db(go_database):
@@ -83,19 +100,25 @@ def read_go_db(go_database):
 
         return go_db
 
-def parse_enrichment_file(input_enrichment, output_enrichment, go_db):
+def parse_enrichment_file(input_enrichment, output_enrichment, go_db, fdr_threshold, max_go_level):
     infile = open(input_enrichment)
     outfile = open(output_enrichment, "w")
     num_go_treated = 0
     num_go_kept = 0
 
-    for line in infile:
-        if line.startswith("#"):
-            #outfile.write(line)
-            pass
+    started = False
 
-        elif line.startswith("id"):
-            outfile.write("id\tlevel\tenrichment\tnamespace\tname\tdefinition\tratio_in_study\tratio_in_pop\tp_uncorrected\tp_bonferroni\tp_holm\tp_sidakp_fdr\n")
+    for line in infile:
+        if not started:
+
+            if line.startswith("GO\tNS\tenrichment"):
+                started = True
+                outfile.write("id\tlevel\tnamespace\tenrichment\tname\tdefinition\tratio_in_study\tratio_in_pop\tp_uncorrected\tp_bonferroni\tp_sidakp_fdr\tp_holm\tp_fdr_bh\n")
+
+            else:
+                outfile.write(line)
+
+            continue
 
         else:
             keep_go = True
@@ -107,18 +130,18 @@ def parse_enrichment_file(input_enrichment, output_enrichment, go_db):
             fdr = float(info.p_sidakp_fdr)
 
             # Filter based on FDR
-            #if fdr > 0.05:
-            #    keep_go = False
+            if fdr > fdr_threshold:
+                keep_go = False
 
             # Filter based on GO level
-            #if not 1 <= info.level <= 3:
-            #    keep_go = False
+            if not 1 <= info.level <= max_go_level:
+                keep_go = False
 
             if keep_go:
                 num_go_kept += 1
                 outfile.write(str(info) + "\n")
 
-    print "  Kept {}/{} GO terms".format(num_go_kept, num_go_treated)
+    print("  Kept {}/{} GO terms".format(num_go_kept, num_go_treated))
     infile.close()
     outfile.close
 
@@ -128,14 +151,24 @@ try:
     go_database = sys.argv[2]
     output_enrichment = sys.argv[3]
 except:
-    print __doc__
+    print(__doc__)
     sys.exit(1)
 
+try:
+    fdr_threshold = float(sys.argv[4])
+except:
+    fdr_threshold = 1.0
+
+try:
+    max_go_level = int(sys.argv[5])
+except:
+    max_go_level = 20
+
 # Store go database
-print "Extracting data from the GO database..."
+print("Extracting data from the GO database...")
 go_db = read_go_db(go_database)
-print "  The GO database contains {} elements".format(len(go_db))
+print("  The GO database contains {} elements".format(len(go_db)))
 
 # Parse and improving enrichment file
-print "Parsing and improving enrichment file..."
-parse_enrichment_file(input_enrichment, output_enrichment, go_db)
+print("Parsing and improving enrichment file...")
+parse_enrichment_file(input_enrichment, output_enrichment, go_db, fdr_threshold, max_go_level)

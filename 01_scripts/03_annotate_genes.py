@@ -110,7 +110,7 @@ try:
     annotation_folder = sys.argv[2]
     output_file = sys.argv[3]
 except:
-    print __doc__
+    print(__doc__)
     sys.exit(1)
 
 # Read fasta file and get annotation
@@ -121,5 +121,7 @@ with open(output_file, "w") as ofile:
     for s in sequences:
         name = s.name.split(" ")[0]
         info_file = os.path.join(annotation_folder, name + ".info")
+        print(info_file)
         info = Info(info_file, s)
+        print(info)
         ofile.write(str(info) + "\n")

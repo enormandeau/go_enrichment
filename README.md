@@ -201,8 +201,19 @@ Before we can perform the Fisher tests, we need to generate two text files conta
 
 ### Step 5 - Run `goatools`
 
+**WARNING!** This is currently broken. Follow the next steps to use goatools:
+
+#### Install goatools
+See Installation section, including getting the GO databases
+[https://github.com/tanghaibao/goatools](https://github.com/tanghaibao/goatools)
+
+#### Run goatools
+```
+python2 scripts/find_enrichment.py --pval=0.05 --indent ../wanted_transcripts.ids ../all_ids.txt ../association.tsv > ../go_annotation.tsv
+```
 This script will launch `goatools` and perform the Fisher tests. Note: edit the script to point to your own installation of `find_enrichment.py`    
 
+# TODO put back in the following script
 ```
 ./01_scripts/04_goatools.sh
 ```
@@ -219,5 +230,3 @@ We can now reformat the results of `goatools` to make them more useful.
 
 `go_enrichment` is licensed under the GPL3 license. See the LICENCE file for
 more details.
-
-
