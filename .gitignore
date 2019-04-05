@@ -3,8 +3,10 @@
 *.bak
 *.bed
 *.csv
+*.fas
 *.fasta
 *.fasta.complete
+*.fna
 *.good
 *.gz
 *.hide

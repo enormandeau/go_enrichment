@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Global variables
-GOATOOLS=/home/labolb/miniconda2/lib/python2.7/site-packages/goatools/cli/find_enrichment.py
+GOATOOLS=/home/labolb/miniconda2/bin/find_enrichment.py
 FISHER_FOLDER=06_fisher_tests
 GO_DATABASE=02_go_database/go-basic.obo
 SIGNIFICANT_IDS=significant_ids.txt

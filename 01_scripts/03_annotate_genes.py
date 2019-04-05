@@ -121,7 +121,5 @@ with open(output_file, "w") as ofile:
     for s in sequences:
         name = s.name.split(" ")[0]
         info_file = os.path.join(annotation_folder, name + ".info")
-        print(info_file)
         info = Info(info_file, s)
-        print(info)
         ofile.write(str(info) + "\n")
