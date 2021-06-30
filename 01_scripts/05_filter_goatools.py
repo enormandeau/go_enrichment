@@ -2,8 +2,10 @@
 """Filter and enrich the results of goatools
 
 Usage:
-    python ./01_scripts/04_filter_goatools.py input_enrichment go_database output_enrichment fdr_threshold max_go_level
+    python ./01_scripts/05_filter_goatools.py input_enrichment go_database output_enrichment fdr_threshold max_go_level
 """
+
+# TODO Fix this for goatools 1.1.6 output
 
 # Modules
 import argparse

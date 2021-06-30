@@ -10,7 +10,7 @@ echo "Prepare uniprot sequences for retrieval"
 cat $SWISSPROT_HITS | while read i; do feature=$(echo $i | cut -d " " -f 1) hit=$(echo $i | cut -d " " -f 2 | cut -d "." -f 1); echo "wget -q -O - http://www.uniprot.org/uniprot/${hit}.txt > $ANNOTATION_FOLDER/${feature}.info"; done > .temp_wget_commands.txt
 
 echo "Download info from uniprot"
-cat .temp_wget_commands.txt | parallel "eval {}"
+cat .temp_wget_commands.txt | parallel -j 20 "eval {}"
 #rm .temp_wget_commands.txt
 
 # Extract wanted info

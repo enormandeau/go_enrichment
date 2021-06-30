@@ -133,6 +133,15 @@ exit
 
 ### goatools
 
+#### NEW WAY TO INSTALL (2021-06-30)
+
+```
+conda create -n goatools -c bioconda goatools=1.1.7
+conda activate goatools
+```
+
+#### Old way
+
 `goatools` is a python module. It depends on a certain number of other python
 modules. In order to make the installation easier, we will be using the
 `anaconda` python data analysis platform. `anaconda` will make it easy to
