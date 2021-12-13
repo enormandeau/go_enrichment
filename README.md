@@ -218,7 +218,7 @@ See Installation section, including getting the GO databases
 
 #### Run goatools
 ```
-python2 scripts/find_enrichment.py --pval=0.05 --indent ../wanted_transcripts.ids ../all_ids.txt ../association.tsv > ../go_annotation.tsv
+python2 scripts/find_enrichment.py --pval=0.05 --indent ../wanted_transcripts.ids ../all_ids.txt ../all_go_annotations.csv > ../go_annotation.tsv
 ```
 This script will launch `goatools` and perform the Fisher tests. Note: edit the script to point to your own installation of `find_enrichment.py`    
 
