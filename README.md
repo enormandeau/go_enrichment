@@ -19,8 +19,8 @@ for more details about installing these prerequisites):
 - `wget`
 - `gnu parallel`
 - `blastplus` 2.7.1+, the NCBI suite of blast tools
-- `swissprot` and `nr` blast databases
-- GO database
+- `swissprot` blast database ftp://ftp.ncbi.nlm.nih.gov/blast/db/swissprot.tar.gz
+- GO database (see GO database section below)
 - `goatools`
 
 ## Installation
@@ -81,14 +81,7 @@ blastn -h
 
 ### Swissprot database
 
-We will use wget to download the `nr` and `swissprot` databases. Since
-`swissprot` is effectively only a subset of `nr`, we need to download both in
-order to use it.
-
-**WARNING!** The `nr` database is rather big. You will be downloading
-approximately 20Go of data and then decompressing it, which will use even more
-space on your computer. Depending on your connection speed, this process could
-take a long time.
+We will use wget to download the `swissprot` databases.
 
 ```
 # Create a temporary bash session
@@ -98,15 +91,13 @@ bash
 mkdir ~/blastplus_databases
 cd ~/blastplus_databases
 
-# Downloading the databases
-wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/nr.*
+# Downloading the database
 wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/swissprot.*
 
 # Confirming the integrity of the downloaded files
 cat *.md5 | md5sum -c
 
 # Decompressing
-for file in `ls nr.*.gz` ; do tar -xzf $file ; done
 for file in `ls swissprot.*.gz`; do tar -xzf $file ; done
 
 # Exit temporary bash session
@@ -124,7 +115,7 @@ bash
 # Moving to the GO database folder
 cd 02_go_database
 
-# Downloading the databases
+# Downloading the GO databases
 wget http://geneontology.org/ontology/go-basic.obo
 
 # Exit temporary bash session
