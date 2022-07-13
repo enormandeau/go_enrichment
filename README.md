@@ -159,7 +159,7 @@ formats expected by `go_enrichment`.
 ### Step 1 - Blast against swissprot
 
 Put your sequences of interest in the `03_sequences` folder in a file named
-`analyzed_genes.fasta`. If you use another name, you will need to modify the
+`transcriptome.fasta`. If you use another name, you will need to modify the
 `SEQUENCE_FILE` variable in the script.
 
 You need the script to point to the locally installed blastplus database by
@@ -190,10 +190,10 @@ some annotation information (Name, Accession, Fullname, Altnames, GO).
 Run:
 
 ```
-./01_scripts/03_annotate_genes.py 03_sequences/analyzed_genes.fasta 05_annotations/ sequence_annotation.txt
+./01_scripts/03_annotate_genes.py 03_sequences/transcriptome.fasta 05_annotations/ sequence_annotation.txt
 ```
 
-### Step 4 - Extract analyzed genes
+### Step 4 - Extract genes
 
 Before we can perform the Fisher tests, we need to generate two text files containing (one per line):
 - The names of **all** the analyzed transcripts, 'all_ids.txt'   
