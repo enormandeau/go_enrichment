@@ -220,6 +220,9 @@ This script will launch `goatools` and perform the Fisher tests. Note: edit the 
 
 ### Step 6 - Filter `goatools` results
 
+### **WARNING!**
+This script no longer works with goatools 1.1.6. Better to filter by hand.
+
 We can now reformat the results of `goatools` to make them more useful.
 
 ```
